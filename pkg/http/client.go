@@ -70,7 +70,7 @@ func NewClient(config *ClientConfig) *httpClient {
 // Request issues a request to the server, and stores the response into result.
 func (c *httpClient) Request(method string, url string, params, result interface{}) (res *http.Response, err error) {
 	for i := 0; i < c.RetryCount+1; i++ {
-		// TODO: use exponential backoff retry library instread of the below.
+		// TODO: use exponential backoff retry library instead of the below.
 		retryDuration := time.Duration((math.Pow(2, float64(i))-1)/2*1000) * time.Millisecond
 		time.Sleep(retryDuration)
 
